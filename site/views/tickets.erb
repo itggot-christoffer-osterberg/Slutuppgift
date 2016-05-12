@@ -1,0 +1,8 @@
+<h1>Mina ärenden</h1>
+<% for ticket in @tickets %>
+  <div class="ticket">
+    <a href="/my_ticket/:ticket"><h2 class="ticket_header"><%= ticket.title %></h2></a>
+    <p class="ticket_description"><%= ticket.description%></p>
+    <p class="ticket_status"><%= ticket.status %></p>
+  </div>
+<% end %>

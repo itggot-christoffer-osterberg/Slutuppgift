@@ -1,0 +1,94 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #1F74C6;
+    height: 100%;
+}
+
+.jumbotron {
+    background-color: white;
+    margin: 0 200px 0 200px;
+    height: 100%;
+}
+
+#Lager_1 {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+}
+
+#login {
+    margin: auto;
+    width: 200px;
+}
+
+#emailinput {
+    height: 22px;
+    width: 190px;
+    margin: 5px auto;
+    display: block;
+}
+
+#passwordinput {
+    height: 22px;
+    width: 190px;
+    margin: 3px auto 0 auto;
+    display: block;
+}
+
+.mdl-button--raised.mdl-button--colored {
+    background: #1F74C6;
+    color: rgb(255,255,255);
+}
+
+.mdl-button {
+    margin: 5px auto 0 auto;
+    display: block;
+}
+
+#logout {
+    margin-top: 0;
+    margin-left: 800px;
+}
+
+.header {
+    background-image: url(../pictures/ITGymnasiet_svart.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100px;
+}
+
+.mdl-layout__header {
+    width: 950px;
+    background-color: #F5F5F5;
+}
+
+.mdl-layout__tab-bar {
+    background-color: #F5F5F5;
+}
+
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active {
+    color: black;
+}
+
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active::after {
+    background-color: black;
+}
+
+.mdl-layout__tab {
+    color: black;
+}
+
+.ticket {
+    border: 1px solid black;
+    margin: 5px 200px 0 20px;
+    width: 500px;
+}

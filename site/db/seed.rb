@@ -24,7 +24,7 @@ class Seeder
 
   def self.users
     User.create(first_name: 'Grill', last_name: 'Banan', email: 'grillbanan@itggot.se', password: 'senap', klass: '1D', roll_id: 1)
-    User.create(first_name: 'Grill', last_name: 'Sven', email: 'grillsven@itggot.se', password: 'ketchup', klass: '1D', roll_id: 1)
+    User.create(first_name: 'Grill', last_name: 'Sven', email: 'grillsven@itggot.se', password: 'ketchup', klass: '2E', roll_id: 1)
     User.create(first_name: 'Admin', last_name: 'Glenn', email: 'adminglenn@itggot.se', password: 'dressing', roll_id: 3)
   end
 
