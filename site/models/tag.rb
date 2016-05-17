@@ -5,6 +5,6 @@ class Tag
   property :name, String, required: true
 
   has n, :articles
-  has n, :tickets
+  has n, :tickets, :through => Resource
 
 end

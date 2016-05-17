@@ -1,8 +1,16 @@
-<h1>Mina ärenden</h1>
-<% for ticket in @tickets %>
-  <div class="ticket">
-    <a href="/my_ticket/:ticket"><h2 class="ticket_header"><%= ticket.title %></h2></a>
-    <p class="ticket_description"><%= ticket.description%></p>
-    <p class="ticket_status"><%= ticket.status %></p>
-  </div>
-<% end %>
+<div class="page-content">
+  <h2 class="title">Mina ärenden</h2>
+  <% for ticket in @tickets %>
+      <div class="ticket">
+        <a class="ticket_link" href="/my_tickets/:ticket"><h3 class="ticket_header"><%= ticket.title %></h3></a>
+        <p class="ticket_description"><%= ticket.description%></p>
+        <p class="ticket_status"><%= ticket.status %></p>
+      </div>
+  <% end %>
+</div>
+
+<style>
+      #my_tickets {
+            background-color: #e6e6e6;
+      }
+</style>

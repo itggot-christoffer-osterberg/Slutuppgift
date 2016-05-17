@@ -1,6 +1,21 @@
-<h1>Skapa ärende</h1>
-<form>
-  <input name="title" type="text" placeholder="Rubrik">
-  <input name="description" type="text" placeholder="Beskrivning">
+<div class="page-content" xmlns="http://www.w3.org/1999/html">
+  <h2 class="title">Skapa ärende</h2>
+  <form action="/create_ticket" method="post">
+    <% for tag in @tags %>
+        <input type="checkbox" name="tags[<%= tag.id %>] "value="<%= tag.id %>"><%= tag.name %><br>
+    <% end %>
+    <input name="title" type="text" placeholder="Rubrik">
+    <br>
+    <textarea name="description" placeholder="Beskrivning" style="width: 300px;"></textarea>
+    <br>
+    <p> Bifoga en fil</p>
+    <input type="text" name="alt_mail" placeholder="alternativ mejl"><br>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Spara</button>
+  </form>
+</div>
 
-</form>
+<style>
+  #create_ticket {
+    background-color: #e6e6e6;
+  }
+</style>

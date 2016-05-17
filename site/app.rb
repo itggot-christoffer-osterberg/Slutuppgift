@@ -1,5 +1,7 @@
 class App < Sinatra::Base
   enable :sessions
+  register Sinatra::Partial
+  set :partial_template_engine, :erb
 
   get '/' do
     redirect '/login'
@@ -37,9 +39,10 @@ class App < Sinatra::Base
     else
       redirect '/'
     end
+
   end
 
-  get '/my_ticket/:ticket' do |id|
+  get '/my_tickets/:ticket' do |id|
     if session[:user_id]
       @user = User.get(session[:user_id])
       @ticket = Ticket.first(id: id)
@@ -52,9 +55,21 @@ class App < Sinatra::Base
   get '/create_ticket' do
     if session[:user_id]
       @user = User.get(session[:user_id])
+      @tags = Tag.all
       erb :create_ticket
     else
       redirect '/'
+    end
+  end
+
+  post '/create_ticket' do
+    ticket = Ticket.create(title: params['title'],
+                           description: params['description'],
+                           alt_email: params['alt_email'])
+    if ticket.valid?
+      redirect "/my_tickets/#{params['ticket_id']}"
+    else
+      redirect back
     end
   end
 

@@ -6,7 +6,7 @@ class User
   property :last_name, String, required: true
   property :email, String, required: true
   property :password, BCryptHash, required: true
-  property :klass, String, required: true
+  property :klass, String
 
   has n, :tickets
   belongs_to :roll

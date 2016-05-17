@@ -9,60 +9,20 @@
   <title>weloveitproblems</title>
 </head>
 <body>
-  <div class="jumbotron">
-    <div class="header">
-      <div id="logout">
-        <% if @user %>
-          <form action="/logout" method="post">
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"type="submit">logga ut</button>
-          </form>
-      </div>
-      <% end %>
+  <div class="jumbotron mdl-shadow--4dp">
+    <div class="header"></div>
+    <div class="nav">
+      <ul class="navbar">
+        <li id="my_tickets"><a href="/my_tickets" class="link">Mina Ärenden</a></li>
+        <li id="create_ticket"><a href="/create_ticket" class="link">Skapa Ärende</a></li>
+        <li id="faq"><a href="/faq" class="link">FAQ</a></li>
+        <li style="float:right"><form action="/logout" class="active" method="post">
+          <button class="logout" type="submit">Logga ut</button></form></li>
+      </ul>
     </div>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
-            mdl-layout--fixed-tabs">
-      <header class="mdl-layout__header">
-        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-          <a href="#my_tickets" class="mdl-layout__tab is-active">Mina Ärenden</a>
-          <a href="#create_ticket" class="mdl-layout__tab">Skapa Ärende</a>
-          <a href="#faq" class="mdl-layout__tab">FAQ</a>
-        </div>
-      </header>
-      <main class="mdl-layout__content">
-        <section class="mdl-layout__tab-panel is-active" id="my_tickets">
-          <div class="page-content">
-            <h1>Mina ärenden</h1>
-            <% for ticket in @tickets %>
-                <div class="ticket">
-                  <a href="/my_ticket/:ticket"><h2 class="ticket_header"><%= ticket.title %></h2></a>
-                  <p class="ticket_description"><%= ticket.description%></p>
-                  <p class="ticket_status"><%= ticket.status %></p>
-                </div>
-            <% end %>
-          </div>
-        </section>
-        <section class="mdl-layout__tab-panel" id="create_ticket">
-          <div class="page-content">
-            <h1>Skapa ärende</h1>
-            <form>
-              <input name="title" type="text" placeholder="Rubrik">
-              <input name="description" type="text" placeholder="Beskrivning">
-            </form>
-          </div>
-        </section>
-        <section class="mdl-layout__tab-panel" id="faq">
-          <div class="page-content">
-            <h1>FAQ</h1>
-            <% for article in @articles %>
-                <div class="article">
-                  <h2 class="article_header"><%= article.title %></h2>
-                  <p class="article_description"><%= article.description%></p>
-                </div>
-            <% end %>
-          </div>
-        </section>
-      </main>
+    <main class="mdl-layout__content">
+      <%= yield %>
+    </main>
     </div>
-  </div>
 </body>
 </html>

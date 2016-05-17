@@ -1,7 +1,15 @@
-<h1>FAQ</h1>
-<% for article in @articles %>
-<div class="article">
-  <h2 class="article_header"><%= article.title %></h2>
-  <p class="article_description"><%= article.description%></p>
+<div class="page-content">
+  <h2 class="title">FAQ</h2>
+  <% for article in @articles %>
+      <div class="article">
+        <h3 class="article_header"><%= article.title %></h3>
+        <p class="article_description"><%= article.description%></p>
+      </div>
+  <% end %>
 </div>
-<% end %>
+
+<style>
+      #faq {
+            background-color: #e6e6e6;
+      }
+</style>

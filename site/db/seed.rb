@@ -29,9 +29,9 @@ class Seeder
   end
 
   def self.tickets
-    Ticket.create(title: 'Problem med internet', description: 'hej jag heter Grill Banan och har problem', status: 'behandlas', user_id: 1, tag_id: 1)
-    Ticket.create(title: 'Problem med dator', description: 'hej jag heter Grill Banan och har problem', status: 'behandlas', user_id: 1, tag_id: 3)
-    Ticket.create(title: 'Problem med inlogg', description: 'hej jag heter Grill Sven och har problem', status: 'behandlas', user_id: 2, tag_id: 2)
+    Ticket.create(title: 'Problem med internet', description: 'hej jag heter Grill Banan och har problem', status: 'behandlas', user_id: 1)
+    Ticket.create(title: 'Problem med dator', description: 'hej jag heter Grill Banan och har problem', status: 'behandlas', user_id: 1)
+    Ticket.create(title: 'Problem med inlogg', description: 'hej jag heter Grill Sven och har problem', status: 'behandlas', user_id: 2)
   end
 
   def self.articles

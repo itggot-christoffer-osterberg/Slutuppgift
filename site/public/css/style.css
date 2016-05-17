@@ -3,19 +3,24 @@
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 html {
     height: 100%;
 }
 
 body {
-    background-color: #1F74C6;
+    background-color: #fafafa;
     height: 100%;
 }
 
 .jumbotron {
-    background-color: white;
+    background-color: #FFFFFF;
     margin: 0 200px 0 200px;
     height: 100%;
+    min-height: 100%
 }
 
 #Lager_1 {
@@ -66,29 +71,69 @@ body {
     height: 100px;
 }
 
-.mdl-layout__header {
-    width: 950px;
-    background-color: #F5F5F5;
+.navbar {
+    list-style-type: none;
+    margin: 10px auto 0 auto;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f2f2f2;
 }
 
-.mdl-layout__tab-bar {
-    background-color: #F5F5F5;
+li {
+    display: inline;
+    float: left;
 }
 
-.mdl-layout.is-upgraded .mdl-layout__tab.is-active {
-    color: black;
+li .link:hover {
+    background-color: #e6e6e6;
 }
 
-.mdl-layout.is-upgraded .mdl-layout__tab.is-active::after {
-    background-color: black;
+.logout {
+    background-color: #f2f2f2;
+    border: none;
+    color: #000000;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: 52px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.mdl-layout__tab {
-    color: black;
+.logout:hover {
+    background-color: #e6e6e6;
+}
+
+.link {
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
 .ticket {
-    border: 1px solid black;
-    margin: 5px 200px 0 20px;
-    width: 500px;
+    border-bottom: 1px solid #E5E5E5;
+    width: 100%;
+    padding: 0 16px;
+}
+
+.ticket_link {
+    color: #000;
+}
+
+.article {
+    border-bottom: 1px solid #E5E5E5;
+    width: 100%;
+    padding: 0 16px;
+}
+
+.title {
+    margin-left: 10px;
+}
+
+.mdl-layout__content {
+    width: 100%;
 }
