@@ -8,25 +8,30 @@ class App < Sinatra::Base
   end
 
   get '/login' do
-    if session[:user_id]
-      @user = User.get(session[:user_id])
-      redirect '/my_tickets'
-    else
+    # if session[:user_id]
+    #   @user = User.get(session[:user_id])
+    #   redirect '/my_tickets'
+    # else
       @user = User.all
     erb :login, layout: false
     end
-  end
+  # end
 
   post '/login' do
     user = User.first(email: params["email"])
     if user && user.password == params["password"]
       session[:user_id] = user.id
+      if user.roll_id == 3
+        redirect '/admin/unassigned'
+      else
+        redirect '/my_tickets'
+      end
     end
-    redirect '/my_tickets'
+
   end
 
   post '/logout' do
-    session[:user_id] = nil
+    session.destroy
     redirect '/'
   end
 
@@ -34,7 +39,6 @@ class App < Sinatra::Base
     if session[:user_id]
       @user = User.get(session[:user_id])
       @tickets = Ticket.all(user_id: @user.id)
-      @articles = Article.all
       erb :tickets
     else
       redirect '/'
@@ -42,10 +46,10 @@ class App < Sinatra::Base
 
   end
 
-  get '/my_tickets/:ticket' do |id|
+  get '/my_tickets/:id' do |id|
     if session[:user_id]
       @user = User.get(session[:user_id])
-      @ticket = Ticket.first(id: id)
+      @ticket = Ticket.get(id)
       erb :ticket
     else
       redirect '/'
@@ -63,13 +67,43 @@ class App < Sinatra::Base
   end
 
   post '/create_ticket' do
-    ticket = Ticket.create(title: params['title'],
-                           description: params['description'],
-                           alt_email: params['alt_email'])
-    if ticket.valid?
-      redirect "/my_tickets/#{params['ticket_id']}"
-    else
-      redirect back
+    p "#" * 60
+    p params
+    if session[:user_id]
+      p "USER FOUND"
+      p params
+      if params["tags"] == nil
+        p "MUAHAHAHAHAHA"
+        redirect back
+      end
+      user = User.get(session[:user_id])
+      p "USER"
+      #p user
+      ticket = Ticket.create(title: params["title"],
+                             description: params["description"],
+                             status: "OTILLDELAD",
+                             alt_email: params["alt-mail"],
+                             user: user)
+      p "TICKET"
+      p ticket
+      p ticket.errors
+      unless params["files"] == [""]
+        params["files"].each do |file|
+          uuid = SecureRandom.hex
+          File.open("./public/files/#{uuid}.#{file[:filename].scan(/\.(.+)$/)[0][0]}", "w+") do |f|
+            f.write file[:tempfile].read
+          end
+          Attachement.create(name: file[:filename],
+                             path: "#{uuid}.#{file[:filename].scan(/\.(.+)$/)[0][0]}")
+        end
+      end
+      params["tags"].each do |tag|
+        ticket.tags << Tag.get(tag)
+      end
+      p ticket
+      p ticket.errors
+      ticket.save
+      redirect 'my_tickets'
     end
   end
 
@@ -80,5 +114,37 @@ class App < Sinatra::Base
     else
       redirect '/'
     end
+  end
+
+  get '/admin/unassigned' do
+    if session[:user_id]
+      @tickets = Ticket.all(status: "OTILLDELAD")
+      erb :unassigned, :layout => :adminlayout
+    end
+  end
+
+  get '/admin/active' do
+    "Hello World"
+    erb :active, :layout => :adminlayout
+  end
+
+  get '/admin/create_ticket' do
+    "Hello World"
+    erb :adminticket, :layout => :adminlayout
+  end
+
+  get '/admin/all_tickets' do
+    "Hello World"
+    erb :alltickets, :layout => :adminlayout
+  end
+
+  get '/admin/faq' do
+    "Hello World"
+    erb :adminfaq, :layout => :adminlayout
+  end
+
+  get '/admin/admins' do
+    "Hello World"
+    erb :admins, :layout => :adminlayout
   end
 end

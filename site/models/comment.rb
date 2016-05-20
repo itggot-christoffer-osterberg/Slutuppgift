@@ -6,7 +6,7 @@ class Comment
 
   has n, :attachements
   belongs_to :user
-  belongs_to :ticket
-  belongs_to :article
+  belongs_to :ticket, required: false
+  belongs_to :article, required: false
 
 end

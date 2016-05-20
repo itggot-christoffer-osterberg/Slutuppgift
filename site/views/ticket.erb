@@ -1,5 +1,8 @@
- <div class="ticket">
-    <h2><%= @ticket.title %></h2>
-    <p><%= @ticket.description%></p>
-    <p><%= @ticket.status %></p>
-  </div>
+<div class="ticket">
+  <h2><%= @ticket.title %></h2>
+  <p><%= @ticket.description%></p>
+  <% for comment in @ticket.comments %>
+    <p class="comment_description"><%= comment.description %></p>
+  <% end %>
+  <p><%= @ticket.status %></p>
+</div>

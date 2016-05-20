@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  <link href="<%= url('/css/style.css') %>" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <title>weloveitproblems</title>
+</head>
+<body>
+<div class="jumbotron mdl-shadow--4dp">
+  <div class="header"></div>
+  <div class="nav">
+    <ul class="navbar">
+      <li id="unassigned"><a href="/admin/unassigned" class="link">Otilldelade Ärenden</a></li>
+      <li id="active"><a href="/admin/active" class="link">Aktiva Ärenden</a></li>
+      <li id="create"><a href="/admin/create_ticket" class="link">Skapa Ärende</a></li>
+      <li id="all"><a href="/admin/all_tickets" class="link">Alla Ärenden</a></li>
+      <li id="adminfaq"><a href="/admin/faq" class="link">FAQ</a></li>
+      <li id="admins"><a href="/admin/admins" class="link">Admins</a></li>
+      <li style="float:right"><form action="/logout" class="active" method="post">
+        <button class="logout" type="submit">Logga ut</button></form></li>
+    </ul>
+  </div>
+  <main class="mdl-layout__content">
+    <%= yield %>
+  </main>
+</div>
+</body>
+</html>

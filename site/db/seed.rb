@@ -1,6 +1,7 @@
 class Seeder
 
   def self.seed!
+    self.statuses
     self.users
     self.tickets
     self.comments
@@ -22,6 +23,13 @@ class Seeder
     Roll.create(name: 'admin')
   end
 
+  def self.statuses
+    Status.create(name: 'OTILLDELAD')
+    Status.create(name: 'BEHANDLAS')
+    Status.create(name: 'BESVARAD')
+    Status.create(name: 'STÄNGD')
+  end
+
   def self.users
     User.create(first_name: 'Grill', last_name: 'Banan', email: 'grillbanan@itggot.se', password: 'senap', klass: '1D', roll_id: 1)
     User.create(first_name: 'Grill', last_name: 'Sven', email: 'grillsven@itggot.se', password: 'ketchup', klass: '2E', roll_id: 1)
@@ -29,9 +37,9 @@ class Seeder
   end
 
   def self.tickets
-    Ticket.create(title: 'Problem med internet', description: 'hej jag heter Grill Banan och har problem', status: 'behandlas', user_id: 1)
-    Ticket.create(title: 'Problem med dator', description: 'hej jag heter Grill Banan och har problem', status: 'behandlas', user_id: 1)
-    Ticket.create(title: 'Problem med inlogg', description: 'hej jag heter Grill Sven och har problem', status: 'behandlas', user_id: 2)
+    Ticket.create(title: 'Problem med internet', description: 'hej jag heter Grill Banan och har problem', status_id: 3, user_id: 1)
+    Ticket.create(title: 'Problem med dator', description: 'hej jag heter Grill Banan och har problem', status_id: 3, user_id: 1)
+    Ticket.create(title: 'Problem med inlogg', description: 'hej jag heter Grill Sven och har problem', status_id: 1, user_id: 2)
   end
 
   def self.articles
