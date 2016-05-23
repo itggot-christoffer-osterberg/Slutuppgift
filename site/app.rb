@@ -81,7 +81,7 @@ class App < Sinatra::Base
       #p user
       ticket = Ticket.create(title: params["title"],
                              description: params["description"],
-                             status: "OTILLDELAD",
+                             status_id: 1,
                              alt_email: params["alt-mail"],
                              user: user)
       p "TICKET"
@@ -118,7 +118,7 @@ class App < Sinatra::Base
 
   get '/admin/unassigned' do
     if session[:user_id]
-      @tickets = Ticket.all(status: "OTILLDELAD")
+      @tickets = Ticket.all(status_id: 1)
       erb :unassigned, :layout => :adminlayout
     end
   end

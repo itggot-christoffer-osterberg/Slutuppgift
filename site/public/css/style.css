@@ -120,8 +120,27 @@ li .link:hover {
     padding: 0 10 0 10;
 }
 
+.question {
+    margin-left: 10px;
+}
+
+.comment {
+    margin-left: 10px;
+}
+
 .ticket_link {
     color: #000;
+    display: inline-block;
+}
+
+.ticket_description {
+    color: #000;
+}
+
+.ticket_status {
+    display: inline-block;
+    margin: 27px 5px 0 0;
+    font-weight: bold;
 }
 
 .article {

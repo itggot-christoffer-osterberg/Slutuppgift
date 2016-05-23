@@ -1,3 +1,20 @@
+<div class="page-content">
+  <h2 class="title">Mina ärenden</h2>
+  <% for ticket in @tickets %>
+      <div class="ticket">
+        <div class="question">
+          <a class="ticket_link" href="/my_tickets/<%= ticket.id %>"><h3 class="ticket_header"><%= ticket.title %></h3></a>
+          <p class="ticket_status"><%= ticket.status.name %></p>
+          <p class="ticket_description"><%= ticket.description %></p>
+        </div>
+        <% for comment in ticket.comments %>
+            <div class="comment">
+              <p class="comment_description"><%= comment.description %></p>
+            </div>
+        <% end %>
+      </div>
+  <% end %>
+</div>
 <style>
   #unassigned {
     background-color: #e6e6e6;

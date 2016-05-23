@@ -4,14 +4,10 @@
     <div class="ticket">
       <div class="question">
         <a class="ticket_link" href="/my_tickets/<%= ticket.id %>"><h3 class="ticket_header"><%= ticket.title %></h3></a>
+        <p class="ticket_status"><%= ticket.status.name %></p>
         <p class="ticket_description"><%= ticket.description %></p>
-        <% for status in @ticket.statuses %>
-            <div class="status">
-                  <p class="ticket_status"><%= status.name %></p>
-            </div>
-        <% end %>
       </div>
-      <% for comment in @ticket.comments %>
+      <% for comment in ticket.comments %>
       <div class="comment">
         <p class="comment_description"><%= comment.description %></p>
       </div>
