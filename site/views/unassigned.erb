@@ -12,9 +12,18 @@
               <p class="comment_description"><%= comment.description %></p>
             </div>
         <% end %>
+        <div class="admins">
+          <select name="admins">
+            <% for admin in @admins %>
+              <option value="<%= admin.id %>"><%= admin.first_name %></option>
+            <% end %>
+          </select>
+          <form></form>
+        </div>
       </div>
   <% end %>
 </div>
+
 <style>
   #unassigned {
     background-color: #e6e6e6;

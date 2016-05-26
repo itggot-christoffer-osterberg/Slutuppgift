@@ -4,6 +4,7 @@ class Article
   property :id, Serial
   property :title, String, required: true
   property :description, Text, required: true
+  property :answer, Text
 
   has n, :comments
   belongs_to :tag

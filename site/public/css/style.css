@@ -59,6 +59,11 @@ body {
     display: block;
 }
 
+#demo-menu-lower-left {
+    margin: 0;
+    display: none;
+}
+
 #logout {
     margin-top: 0;
     margin-left: 800px;
@@ -112,6 +117,15 @@ li .link:hover {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+}
+
+.mobilelink {
+    color: #000000;
+    width: 100%;
+}
+
+.mdl-menu__item {
+    width: 100%;
 }
 
 .ticket {
@@ -183,4 +197,19 @@ li .link:hover {
 
 .ticket_status {
     float: right
+}
+
+@media (max-width: 900px) {
+    .jumbotron {
+        margin: 0 0 0 0;
+    }
+
+    .pclink {
+        display: none;
+    }
+
+    #demo-menu-lower-left {
+        margin: 10px 0 0 0;
+        display: inline;
+    }
 }

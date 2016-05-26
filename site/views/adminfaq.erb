@@ -1,3 +1,14 @@
+<div class="page-content">
+  <h2 class="title">FAQ</h2>
+  <% for article in @articles %>
+      <div class="article">
+        <h3 class="article_header"><%= article.title %></h3>
+        <p class="article_description"><%= article.description%></p>
+        <p class="article_answer"><%= article.answer %></p>
+      </div>
+  <% end %>
+</div>
+
 <style>
   #adminfaq {
     background-color: #e6e6e6;

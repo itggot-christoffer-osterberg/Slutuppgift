@@ -13,10 +13,21 @@
     <div class="header"></div>
     <div class="nav">
       <ul class="navbar">
-        <li id="my_tickets"><a href="/my_tickets" class="link">Mina Ärenden</a></li>
-        <li id="create_ticket"><a href="/create_ticket" class="link">Skapa Ärende</a></li>
-        <li id="faq"><a href="/faq" class="link">FAQ</a></li>
-        <li style="float:right"><form action="/logout" class="active" method="post">
+        <button id="demo-menu-lower-left"
+                class="mdl-button mdl-js-button mdl-button--icon">
+          <i class="material-icons">more_vert</i>
+        </button>
+
+        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+            for="demo-menu-lower-left">
+          <li class="mdl-menu__item"><a href="/student/my_tickets" class="mobilelink">Mina Ärenden</a></li>
+          <li class="mdl-menu__item"><a href="/student/create_ticket" class="mobilelink">Skapa Ärende</a></li>
+          <li class="mdl-menu__item"><a href="/student/faq" class="mobilelink">FAQ</a></li>
+        </ul>
+        <li class="pclink" id="my_tickets"><a href="/student/my_tickets" class="link">Mina Ärenden</a></li>
+        <li class="pclink" id="create_ticket"><a href="/student/create_ticket" class="link">Skapa Ärende</a></li>
+        <li class="pclink" id="faq"><a href="/student/faq" class="link">FAQ</a></li>
+        <li style="float:right"><form action="/student/logout" class="active" method="post">
           <button class="logout" type="submit">Logga ut</button></form></li>
       </ul>
     </div>

@@ -12,7 +12,8 @@ class App < Sinatra::Base
     #   @user = User.get(session[:user_id])
     #   redirect '/my_tickets'
     # else
-      @user = User.all
+    @student = Student.all
+    @admin = Admin.all
     erb :login, layout: false
     end
   # end
@@ -20,22 +21,30 @@ class App < Sinatra::Base
   post '/login' do
     user = User.first(email: params["email"])
     if user && user.password == params["password"]
+      p 'asdfasd'
       session[:user_id] = user.id
-      if user.roll_id == 3
+      if user.admin?
         redirect '/admin/unassigned'
       else
-        redirect '/my_tickets'
+        redirect '/student/my_tickets'
       end
+    else
+      redirect '/noworkerino'
     end
 
   end
 
-  post '/logout' do
+  post '/student/logout' do
     session.destroy
     redirect '/'
   end
 
-  get '/my_tickets' do
+  post '/admin/logout' do
+    session.destroy
+    redirect '/'
+  end
+
+  get '/student/my_tickets' do
     if session[:user_id]
       @user = User.get(session[:user_id])
       @tickets = Ticket.all(user_id: @user.id)
@@ -46,7 +55,7 @@ class App < Sinatra::Base
 
   end
 
-  get '/my_tickets/:id' do |id|
+  get '/student/my_tickets/:id' do |id|
     if session[:user_id]
       @user = User.get(session[:user_id])
       @ticket = Ticket.get(id)
@@ -56,7 +65,7 @@ class App < Sinatra::Base
     end
   end
 
-  get '/create_ticket' do
+  get '/student/create_ticket' do
     if session[:user_id]
       @user = User.get(session[:user_id])
       @tags = Tag.all
@@ -66,7 +75,7 @@ class App < Sinatra::Base
     end
   end
 
-  post '/create_ticket' do
+  post '/student/create_ticket' do
     p "#" * 60
     p params
     if session[:user_id]
@@ -103,11 +112,11 @@ class App < Sinatra::Base
       p ticket
       p ticket.errors
       ticket.save
-      redirect 'my_tickets'
+      redirect '/student/my_tickets'
     end
   end
 
-  get '/faq' do
+  get '/student/faq' do
     if session[:user_id]
       @articles = Article.all
       erb :faq
@@ -119,6 +128,7 @@ class App < Sinatra::Base
   get '/admin/unassigned' do
     if session[:user_id]
       @tickets = Ticket.all(status_id: 1)
+      @admins = Admin.all
       erb :unassigned, :layout => :adminlayout
     end
   end
@@ -139,7 +149,7 @@ class App < Sinatra::Base
   end
 
   get '/admin/faq' do
-    "Hello World"
+    @articles = Article.all
     erb :adminfaq, :layout => :adminlayout
   end
 
