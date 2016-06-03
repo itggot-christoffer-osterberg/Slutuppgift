@@ -3,8 +3,8 @@
   <% for ticket in @tickets %>
     <div class="ticket">
       <div class="question">
-        <a class="ticket_link" href="/my_tickets/<%= ticket.id %>"><h3 class="ticket_header"><%= ticket.title %></h3></a>
-        <p class="ticket_status"><%= ticket.status.name %></p>
+        <p class="ticket_status"><%= ticket.status.name %></p><br>
+        <a class="ticket_link" href="/student/my_tickets/<%= ticket.id %>"><h3 class="ticket_header"><%= ticket.title %></h3></a>
         <p class="ticket_description"><%= ticket.description %></p>
       </div>
       <% for comment in ticket.comments %>

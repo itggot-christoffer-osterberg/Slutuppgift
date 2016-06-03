@@ -21,7 +21,6 @@ class App < Sinatra::Base
   post '/login' do
     user = User.first(email: params["email"])
     if user && user.password == params["password"]
-      p 'asdfasd'
       session[:user_id] = user.id
       if user.admin?
         redirect '/admin/unassigned'
@@ -29,7 +28,7 @@ class App < Sinatra::Base
         redirect '/student/my_tickets'
       end
     else
-      redirect '/noworkerino'
+      redirect back
     end
 
   end
@@ -46,8 +45,8 @@ class App < Sinatra::Base
 
   get '/student/my_tickets' do
     if session[:user_id]
-      @user = User.get(session[:user_id])
-      @tickets = Ticket.all(user_id: @user.id)
+      @user = Student.get(session[:user_id])
+      @tickets = Ticket.all(student_id: @user.id)
       erb :tickets
     else
       redirect '/'
@@ -59,6 +58,7 @@ class App < Sinatra::Base
     if session[:user_id]
       @user = User.get(session[:user_id])
       @ticket = Ticket.get(id)
+      @comments = Comment.all(ticket_id: id)
       erb :ticket
     else
       redirect '/'
@@ -76,26 +76,17 @@ class App < Sinatra::Base
   end
 
   post '/student/create_ticket' do
-    p "#" * 60
-    p params
     if session[:user_id]
-      p "USER FOUND"
-      p params
       if params["tags"] == nil
         p "MUAHAHAHAHAHA"
         redirect back
       end
       user = User.get(session[:user_id])
-      p "USER"
-      #p user
       ticket = Ticket.create(title: params["title"],
                              description: params["description"],
                              status_id: 1,
                              alt_email: params["alt-mail"],
-                             user: user)
-      p "TICKET"
-      p ticket
-      p ticket.errors
+                             student_id: user.id)
       unless params["files"] == [""]
         params["files"].each do |file|
           uuid = SecureRandom.hex
@@ -109,8 +100,6 @@ class App < Sinatra::Base
       params["tags"].each do |tag|
         ticket.tags << Tag.get(tag)
       end
-      p ticket
-      p ticket.errors
       ticket.save
       redirect '/student/my_tickets'
     end
@@ -130,31 +119,72 @@ class App < Sinatra::Base
       @tickets = Ticket.all(status_id: 1)
       @admins = Admin.all
       erb :unassigned, :layout => :adminlayout
+    else
+      redirect '/'
     end
   end
 
+  post '/admin/unassigned' do
+    admin = params["admins"]
+    ticket = Ticket.get(params["ticket"])
+    ticket.update(admin_id: admin,
+                  status_id: 2)
+
+    redirect back
+  end
+
   get '/admin/active' do
-    "Hello World"
-    erb :active, :layout => :adminlayout
+    if session[:user_id]
+      @user = Admin.get(session[:user_id])
+      @tickets = Ticket.all(admin_id: @user.id)
+      erb :active, :layout => :adminlayout
+    else
+      redirect '/'
+    end
+  end
+
+  get '/admin/tickets/:id' do |id|
+    if session[:user_id]
+      @user = User.get(session[:user_id])
+      @ticket = Ticket.get(id)
+      erb :viewticket, :layout => :adminlayout
+    else
+      redirect '/'
+    end
   end
 
   get '/admin/create_ticket' do
-    "Hello World"
-    erb :adminticket, :layout => :adminlayout
+    if session[:user_id]
+      @user = Admin.get(session[:user_id])
+      @tags = Tag.all
+      erb :adminticket, :layout => :adminlayout
+    else
+      redirect '/'
+    end
   end
 
   get '/admin/all_tickets' do
-    "Hello World"
-    erb :alltickets, :layout => :adminlayout
+    if session[:user_id]
+      erb :alltickets, :layout => :adminlayout
+    else
+      redirect '/'
+    end
   end
 
   get '/admin/faq' do
-    @articles = Article.all
-    erb :adminfaq, :layout => :adminlayout
+    if session[:user_id]
+      @articles = Article.all
+      erb :adminfaq, :layout => :adminlayout
+    else
+      redirect '/'
+    end
   end
 
   get '/admin/admins' do
-    "Hello World"
-    erb :admins, :layout => :adminlayout
+    if session[:user_id]
+      erb :admins, :layout => :adminlayout
+    else
+      redirect '/'
+    end
   end
 end

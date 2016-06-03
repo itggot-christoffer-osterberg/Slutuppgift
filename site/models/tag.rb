@@ -4,7 +4,7 @@ class Tag
   property :id, Serial
   property :name, String, required: true
 
-  has n, :articles
+  has n, :articles, :through => Resource
   has n, :tickets, :through => Resource
 
 end

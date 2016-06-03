@@ -9,8 +9,7 @@ class User
   property :klass, String
   property :type, Discriminator
 
-  has n, :tickets
-  has n, :articles
+
 
   def admin?
     self.is_a? Admin
@@ -18,6 +17,10 @@ class User
 
 end
 
-class Admin   < User; end
-class Student < User; end
-class Teacher < User; end
+class Admin   < User
+  has n, :tickets
+end
+
+class Student < User
+  has n, :tickets
+end

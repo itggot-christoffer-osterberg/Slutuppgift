@@ -32,18 +32,24 @@ class Seeder
   def self.admins
     Admin.create(first_name: 'Snygg', last_name: 'Glenn', email: 'snygg_glenn@itggot.se', password: 'dressing')
     Admin.create(first_name: 'Gammel', last_name: 'Smurf', email: 'gammelsmurf@itggot.se', password: 'coleslaw')
-    Admin.create(first_name: 'Ketchup', last_name: 'Senap', email: 'ketchupsenap@itggot.se', password: 'majonäs')
   end
 
   def self.tickets
-    Ticket.create(title: 'Problem med internet', description: 'hej jag heter Grill Banan och har problem', status_id: 3, user_id: 1)
-    Ticket.create(title: 'Problem med dator', description: 'hej jag heter Grill Banan och har problem', status_id: 3, user_id: 1)
-    Ticket.create(title: 'Problem med inlogg', description: 'hej jag heter Grill Sven och har problem', status_id: 1, user_id: 1)
+    Ticket.create(title: 'Problem med internet', description: 'hej jag heter Grill Banan och har problem', status_id: 1, student_id: 1)
+    Ticket.create(title: 'Problem med dator', description: 'hej jag heter Grill Banan och har problem', status_id: 1, student_id: 2)
+    Ticket.create(title: 'Problem med inlogg', description: 'hej jag heter Grill Sven och har problem', status_id: 1, student_id: 1)
+    Ticket.create(title: 'Problem med internet', description: 'hej jag heter Grill Banan och har problem', status_id: 1, student_id: 2)
+    Ticket.create(title: 'Problem med internet', description: 'hej jag heter Grill Banan och har problem', status_id: 2, student_id: 1, admin_id: 3)
+    Ticket.create(title: 'Problem med internet', description: 'hej jag heter Grill Banan och har problem', status_id: 2, student_id: 2, admin_id: 3)
+    Ticket.create(title: 'Problem med internet', description: 'hej jag heter Grill Banan och har problem', status_id: 2, student_id: 1, admin_id: 4)
+    Ticket.create(title: 'Problem med internet', description: 'hej jag heter Grill Banan och har problem', status_id: 2, student_id: 2, admin_id: 4)
+
   end
 
   def self.articles
-    Article.create(title: 'Problem med inlogg', description: 'det vanligaste problemet är...', answer: 'gör såhär', user_id: 3, tag_id: 2)
-    Article.create(title: 'Problem med knapp', description: 'det vanligaste problemet är...', answer: 'gör såhär', user_id: 3, tag_id: 3)
+    Article.create(title: 'Problem med inlogg', description: 'det vanligaste problemet är...', answer: 'gör såhär')
+    Article.create(title: 'Problem med knapp', description: 'det vanligaste problemet är...', answer: 'gör såhär')
+    Article.create(title: 'Problem med whatever', description: 'det vanligaste problemet är...', answer: 'gör såhär')
   end
 
   def self.comments

@@ -1,10 +1,9 @@
 <div class="page-content">
-  <h2 class="title">Mina ärenden</h2>
+  <h2 class="title">Otilldelade ärenden</h2>
   <% for ticket in @tickets %>
       <div class="ticket">
         <div class="question">
-          <a class="ticket_link" href="/my_tickets/<%= ticket.id %>"><h3 class="ticket_header"><%= ticket.title %></h3></a>
-          <p class="ticket_status"><%= ticket.status.name %></p>
+          <h3 class="ticket_header"><%= ticket.title %></h3>
           <p class="ticket_description"><%= ticket.description %></p>
         </div>
         <% for comment in ticket.comments %>
@@ -12,14 +11,15 @@
               <p class="comment_description"><%= comment.description %></p>
             </div>
         <% end %>
-        <div class="admins">
-          <select name="admins">
+        <form method="post" action="/admin/unassigned">
+          <select name="admins" class="admins">
             <% for admin in @admins %>
               <option value="<%= admin.id %>"><%= admin.first_name %></option>
             <% end %>
           </select>
-          <form></form>
-        </div>
+          <button id="assign"class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Tilldela</button>
+          <input type="hidden" value="<%= ticket.id %>" name="ticket">
+        </form>
       </div>
   <% end %>
 </div>

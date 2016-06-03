@@ -6,9 +6,7 @@ class Article
   property :description, Text, required: true
   property :answer, Text
 
-  has n, :comments
-  belongs_to :tag
+  has n, :tags, :through => Resource
   has n, :attachements
-  belongs_to :user
 
 end

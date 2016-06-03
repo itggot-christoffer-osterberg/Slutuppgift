@@ -1,3 +1,33 @@
+<div class="page-content" xmlns="http://www.w3.org/1999/html">
+  <h2 class="title">Skapa ärende</h2>
+  <form id="create_ticket_form" action="/student/create_ticket" method="post">
+    <div class="categories">
+      <ul class="checkboxes">
+        <% for tag in @tags %>
+            <li class="checkbox"><input class="checkinput" type="checkbox" name="tags[]" value="<%= tag.id %>"><%= tag.name %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="input">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" id="titleinput" name="title" type="text">
+        <label class="mdl-textfield__label" for="titleinput">Rubrik...</label>
+      </div><br>
+      <div class="mdl-textfield mdl-js-textfield">
+        <textarea class="mdl-textfield__input" id="descriptioninput" rows="3" name="description"></textarea>
+        <label class="mdl-textfield__label" for="descriptioninput">Beskrivninng...</label>
+      </div><br>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" id="alt-mailinput" name="alt-mail" type="text">
+        <label class="mdl-textfield__label" for="alt-mailinput">Alternativ mejl...</label>
+      </div><br>
+      <input id="attach_files" name="files[]" type="file" multiple="true">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Spara</button>
+    </div>
+
+  </form>
+</div>
+
 <style>
   #create {
     background-color: #e6e6e6;

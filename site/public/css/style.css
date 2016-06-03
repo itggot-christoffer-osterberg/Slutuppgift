@@ -129,7 +129,7 @@ li .link:hover {
 }
 
 .ticket {
-    border-bottom: 1px solid #E5E5E5;
+    border-top: 1px solid #E5E5E5;
     width: 100%;
     padding: 0 10 0 10;
 }
@@ -147,20 +147,43 @@ li .link:hover {
     display: inline-block;
 }
 
+.ticket_link h3 {
+    line-height: 0.5;
+    max-width: 400px;
+}
+
 .ticket_description {
     color: #000;
+    max-width: 450px;
 }
 
 .ticket_status {
     display: inline-block;
-    margin: 27px 5px 0 0;
+    margin: 3px 5px 0 0;
     font-weight: bold;
+    float: right
+}
+
+.comment_description {
+    max-width: 450px;
 }
 
 .article {
     border-bottom: 1px solid #E5E5E5;
     width: 100%;
     padding: 0 10px;
+}
+
+.article_header {
+    max-width: 400px;
+}
+
+.article_description {
+    max-width: 450px;
+}
+
+.article_answer {
+    max-width: 450px;
 }
 
 .title {
@@ -195,9 +218,6 @@ li .link:hover {
     padding-right: 10px;
 }
 
-.ticket_status {
-    float: right
-}
 
 @media (max-width: 900px) {
     .jumbotron {
@@ -211,5 +231,20 @@ li .link:hover {
     #demo-menu-lower-left {
         margin: 10px 0 0 0;
         display: inline;
+    }
+
+    .ticket_status {
+        display: inline-block;
+        margin: 3px 5px 0 0;
+        font-weight: bold;
+        float: left;
+    }
+
+    .ticket_link {
+        display: initial;
+    }
+
+    .ticket_link h3 {
+        line-height: 1;
     }
 }
